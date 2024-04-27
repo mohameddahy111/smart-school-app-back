@@ -34,7 +34,7 @@ router.post(
   // validetor(adduserValidation),
   addUser
 );
-router.post("/login", validetor(loginValidation), login);
+router.post("/login", login);
 
 router.patch("/setting/blocked", auth, rolles(["admin"]), setSettingByAdmin);
 router.patch("/logout/:id", auth, userLogout);

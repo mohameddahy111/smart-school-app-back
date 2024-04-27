@@ -42,9 +42,9 @@ export const login = errorHandler(async (req, res, next) => {
   if (!findEmail) {
     return next(new AppError(" this email is not correct", 404));
   }
-  if (!findEmail._isVerify) {
-    return next(new AppError(" this email is not verfiy", 409));
-  }
+  // if (!findEmail._isVerify) {
+  //   return next(new AppError(" this email is not verfiy", 409));
+  // }
   const match =
     findEmail &&
     bcrypt.compareSync(password, findEmail?.password, process.env.SALT);
