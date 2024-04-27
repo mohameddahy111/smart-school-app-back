@@ -3,7 +3,7 @@ import { sendVirfiyEmail } from "../../email/sendEmail.js";
 import { AppError } from "../../utils/appError.js";
 import { errorHandler } from "../../utils/errorHandler.js";
 import User from "../schema/user.schema.js";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import cloudinary from "../../utils/cloudnery.js";
 //---------------------------  add user -------------------------------------//
