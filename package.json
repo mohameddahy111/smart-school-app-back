@@ -11,7 +11,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "engines":{
+  "engines": {
     "node": "v20.10.0"
   },
   "dependencies": {
