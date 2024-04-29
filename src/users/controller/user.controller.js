@@ -15,7 +15,7 @@ export const addUser = errorHandler(async (req, res, next) => {
   if (req.file) {
     const { public_id, secure_url } = await cloudinary.uploader.upload(
       req.file.path,
-      { folder: `studern/${req.body.school}/${req.body.slug}` }
+      { folder: `student/${req.body.school}/${req.body.slug}` }
     );
     req.body.img = { id: public_id, src: secure_url };
   }
@@ -57,7 +57,7 @@ export const login = errorHandler(async (req, res, next) => {
     { _isActive: true },
     { new: true }
   );
-  res.status(200).send({ message: "success", token, userInfo: findEmail });
+  res.status(200).send({ message: "success", token, user: findEmail });
 });
 //------------------------------ update user----------------------------------//
 export const updateUser = errorHandler(async (req, res, next) => {
