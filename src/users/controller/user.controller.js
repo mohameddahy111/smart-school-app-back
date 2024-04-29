@@ -11,7 +11,7 @@ import cloudinary from "../../utils/cloudnery.js";
 export const addUser = errorHandler(async (req, res, next) => {
   const findUser = await User.findOne({ email: req.body.email });
   if (findUser) return next(new AppError("this user already exists", 401));
-  req.body.slug = slugify(req.body.userName)
+  req.body.slug = slugify(req.body.userName);
   if (req.file) {
     const { public_id, secure_url } = await cloudinary.uploader.upload(
       req.file.path,
@@ -20,10 +20,10 @@ export const addUser = errorHandler(async (req, res, next) => {
     req.body.img = { id: public_id, src: secure_url };
   }
   if (!req.file) {
-    req.body.img = { id: "", src: ''};
+    req.body.img = { id: "", src: "" };
   }
   const user = new User(req.body);
-  await user.save();
+  const newUser = await user.save();
   if (!user) {
     return next(new AppError(" Error inserting user", 404));
   }
@@ -31,7 +31,7 @@ export const addUser = errorHandler(async (req, res, next) => {
   //   email: user.email,
   //   url: `http://localhost:3001/users/verify/${user._id}`,
   // });
-  res.status(201).send("success add user");
+  res.status(201).send({ message: "success Register ", user: newUser });
 });
 
 //--------------------------- log in  -------------------------------------//
@@ -57,7 +57,7 @@ export const login = errorHandler(async (req, res, next) => {
     { _isActive: true },
     { new: true }
   );
-  res.status(200).send({ message: "success", token });
+  res.status(200).send({ message: "success", token, userInfo: findEmail });
 });
 //------------------------------ update user----------------------------------//
 export const updateUser = errorHandler(async (req, res, next) => {
@@ -132,31 +132,27 @@ export const getUserDetils = errorHandler(async (req, res, next) => {
     return next(new AppError("this user not found", 404));
   }
   const ordesrs = await Orders.find({ userId: userId }).populate([
-    { path: "userId", select: ["name" , "phone"] },
+    { path: "userId", select: ["name", "phone"] },
     { path: "cartItems.productId", select: ["title"] },
-    { path: "accpetBy", select: ["name", "email"]}
+    { path: "accpetBy", select: ["name", "email"] }
   ]);
   res
     .status(200)
-    .send(
-      { message: "found user" ,user_info: user,user_orders: ordesrs},
-    );
+    .send({ message: "found user", user_info: user, user_orders: ordesrs });
 });
 
 //-------------------------set Block---------------------------------------//
 export const setSettingByAdmin = errorHandler(async (req, res, next) => {
-  const {id } = req.body
-  const user = await User.findByIdAndUpdate(id ,req.body , {new:true})
+  const { id } = req.body;
+  const user = await User.findByIdAndUpdate(id, req.body, { new: true });
   if (!user) {
-  return  next(new AppError("Not found User" , 404))
+    return next(new AppError("Not found User", 404));
   }
-  res.status(200).send({ message:'User updated successfully'})
-
+  res.status(200).send({ message: "User updated successfully" });
 });
 //-------------------------set logout---------------------------------------//
 export const userLogout = errorHandler(async (req, res, next) => {
-  const {id } = req.params
- await User.findByIdAndUpdate(id ,req.body,{new :true} )
-  res.status(200).send({ message:'User updated successfully'})
-
+  const { id } = req.params;
+  await User.findByIdAndUpdate(id, req.body, { new: true });
+  res.status(200).send({ message: "User updated successfully" });
 });
