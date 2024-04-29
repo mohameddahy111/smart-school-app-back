@@ -38,7 +38,7 @@ export const addUser = errorHandler(async (req, res, next) => {
 
 export const login = errorHandler(async (req, res, next) => {
   const { password, email } = req.body;
-  const findEmail = await User.findOne({ email });
+  const findEmail = await User.findOne({ email:email.toLowerCase() });
   if (!findEmail) {
     return next(new AppError(" this email is not correct", 404));
   }
