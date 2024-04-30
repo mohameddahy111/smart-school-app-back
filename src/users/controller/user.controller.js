@@ -167,5 +167,5 @@ export const getAllStudents = errorHandler(async (req, res, next) => {
 export const getNewStudent = errorHandler(async (req, res, next) => {
 
  const allStudents =  await User.find({_isAdmin :false , _isAdmin_confirm :false});
-  res.status(200).send(allStudents.length);
+  res.status(200).send(allStudents);
 });
