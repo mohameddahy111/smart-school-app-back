@@ -9,7 +9,7 @@ import cloudinary from "../../utils/cloudnery.js";
 //---------------------------  add user -------------------------------------//
 //TODO : verify user email  send email
 export const addUser = errorHandler(async (req, res, next) => {
-  const findUser = await User.findOne({ email: req.body.findEmail });
+  const findUser = await User.findOne({ phone: req.body.phone });
   if (findUser) return next(new AppError("this user already exists", 401));
   req.body.slug = slugify(req.body.userName);
   if (req.file) {
@@ -37,8 +37,8 @@ export const addUser = errorHandler(async (req, res, next) => {
 //--------------------------- log in  -------------------------------------//
 
 export const login = errorHandler(async (req, res, next) => {
-  const { password, email } = req.body;
-  const findEmail = await User.findOne({ email:email });
+  const { password, phone } = req.body;
+  const findEmail = await User.findOne({ phone:phone });
   if (!findEmail) {
     return next(new AppError(" this email is not correct", 404));
   }
