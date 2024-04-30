@@ -10,6 +10,7 @@ const userschema = new mongoose.Schema(
     phone: { type: Number, required: true },
     school: { type: String },
     _isAdmin: { type: Boolean, default: false },
+    _isSuper: { type: Boolean, default: false },
     _isAdmin_confirm: { type: Boolean, default: false },
     _isBlocked: { type: Boolean, default: false },
     _isVerify: { type: Boolean, default: false },
