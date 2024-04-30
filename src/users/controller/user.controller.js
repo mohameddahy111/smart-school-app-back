@@ -160,7 +160,7 @@ export const userLogout = errorHandler(async (req, res, next) => {
 //-------------------------get all Students---------------------------------------//
 export const getAllStudents = errorHandler(async (req, res, next) => {
 
- const allStudents =  await User.find({_isAdmin :false});
+ const allStudents =  await User.find({_isAdmin :false ,_isAdmin_confirm:true});
   res.status(200).send(allStudents);
 });
 //-------------------------get all Students---------------------------------------//
