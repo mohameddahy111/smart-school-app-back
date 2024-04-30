@@ -156,3 +156,9 @@ export const userLogout = errorHandler(async (req, res, next) => {
   await User.findByIdAndUpdate(id, req.body, { new: true });
   res.status(200).send({ message: "User updated successfully" });
 });
+//-------------------------get all Students---------------------------------------//
+export const getAllStudents = errorHandler(async (req, res, next) => {
+
+ const allStudents =  await User.find({_isAdmin :false});
+  res.status(200).send(allStudents);
+});

@@ -9,7 +9,8 @@ import {
   setSettingByAdmin,
   updateUser,
   userLogout,
-  verfiyemail
+  verfiyemail,
+  getAllStudents
 } from "../controller/user.controller.js";
 import { auth } from "../../middleware/auth.js";
 import { rolles } from "../../middleware/rolles.js";
@@ -23,7 +24,7 @@ import { uploadCloud } from "../../middleware/cloudinero.js";
 import User from "../schema/user.schema.js";
 
 const router = express.Router();
-router.get("/", getAll(User));
+router.get("/students", getAllStudents);
 router.get("/verfiy/:id", verfiyemail);
 router.get("/userInfo", getUserInfo);
 router.get("/admin/user/:userId", getUserDetils);
