@@ -23,10 +23,10 @@ import { uploadCloud } from "../../middleware/cloudinero.js";
 import User from "../schema/user.schema.js";
 
 const router = express.Router();
-router.get("/", auth, rolles(["admin"]), getAll(User));
+router.get("/", getAll(User));
 router.get("/verfiy/:id", verfiyemail);
-router.get("/userInfo", auth, getUserInfo);
-router.get("/admin/user/:userId", auth, rolles(["admin"]), getUserDetils);
+router.get("/userInfo", getUserInfo);
+router.get("/admin/user/:userId", getUserDetils);
 
 router.post(
   "/",
