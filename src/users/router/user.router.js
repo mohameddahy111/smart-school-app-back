@@ -11,7 +11,8 @@ import {
   userLogout,
   verfiyemail,
   getAllStudents,
-  getNewStudent
+  getNewStudent,
+  getAdmins
 } from "../controller/user.controller.js";
 import { auth } from "../../middleware/auth.js";
 import { rolles } from "../../middleware/rolles.js";
@@ -30,6 +31,7 @@ router.get("/verfiy/:id", verfiyemail);
 router.get("/userInfo", getUserInfo);
 router.get("/admin/user/:userId", getUserDetils);
 router.get("/admin/new_student", getNewStudent);
+router.get("/admin/admins", getAdmins);
 
 router.post(
   "/",
