@@ -61,7 +61,7 @@ export const login = errorHandler(async (req, res, next) => {
 });
 //------------------------------ update user----------------------------------//
 export const updateUser = errorHandler(async (req, res, next) => {
-  const id = req.userId;
+  const {id} = req.body;
   const findUser = await User.findById(id);
   if (!findUser) {
     return next(new AppError(" this user not found ", 404));
@@ -144,7 +144,7 @@ export const getUserDetils = errorHandler(async (req, res, next) => {
 
 //-------------------------set Block---------------------------------------//
 export const setSettingByAdmin = errorHandler(async (req, res, next) => {
-  const { id } = req.body;
+  const { id } = req.params;
   const user = await User.findByIdAndUpdate(id, req.body, { new: true });
   if (!user) {
     return next(new AppError("Not found User", 404));
