@@ -46,6 +46,6 @@ router.patch("/logout/:id", auth, userLogout);
 router.patch("/forget_password", validetor(loginValidation), forgetPassword);
 router.patch("/change_password/:id", changePassword);
 router.patch("/", updateUser);
-router.delete("/:id", auth, rolles(["admin"]), deleteItem(User));
+router.delete("/:id",  deleteItem(User));
 
 export default router;
