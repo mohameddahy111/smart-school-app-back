@@ -45,7 +45,7 @@ router.patch("/setting/blocked", auth, rolles(["admin"]), setSettingByAdmin);
 router.patch("/logout/:id", auth, userLogout);
 router.patch("/forget_password", validetor(loginValidation), forgetPassword);
 router.patch("/change_password/:id", changePassword);
-router.patch("/:id", updateUser);
+router.patch("/", updateUser);
 router.delete("/:id", auth, rolles(["admin"]), deleteItem(User));
 
 export default router;
