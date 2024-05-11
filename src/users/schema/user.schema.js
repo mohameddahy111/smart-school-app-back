@@ -16,7 +16,7 @@ const userschema = new mongoose.Schema(
     _isVerify: { type: Boolean, default: false },
     _isActive: { type: Boolean, default: false },
     changePasswordAt: { type: Date },
-    img: { type: Object ,default:'' },
+    img: {Object},
     _isPresence:{ type: Boolean, default:false},
     
   },
