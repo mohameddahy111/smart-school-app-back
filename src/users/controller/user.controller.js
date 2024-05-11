@@ -163,7 +163,7 @@ export const getAllStudents = errorHandler(async (req, res, next) => {
  const allStudents =  await User.find({_isAdmin :false ,_isAdmin_confirm:true});
   res.status(200).send(allStudents);
 });
-//-------------------------get all Students---------------------------------------//
+//-------------------------get allnew Students---------------------------------------//
 export const getNewStudent = errorHandler(async (req, res, next) => {
 
  const allStudents =  await User.find({_isAdmin :false , _isAdmin_confirm :false});
@@ -174,4 +174,8 @@ export const getAdmins = errorHandler(async (req, res, next) => {
 
  const allAdmins =  await User.find({_isAdmin :true });
   res.status(200).send(allAdmins);
+});
+export const getStutPresence = errorHandler(async (req, res, next) => {
+  const _isPresence = await User.find({ _isPresence: true });
+  res.status(200).send(_isPresence);
 });
