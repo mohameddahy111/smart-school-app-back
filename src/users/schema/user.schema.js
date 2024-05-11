@@ -6,8 +6,8 @@ const userschema = new mongoose.Schema(
     userName: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    slug: { type: String, required: true,},
-    phone: { type: Number, required: true ,unique: true},
+    slug: { type: String, required: true },
+    phone: { type: Number, required: true, unique: true },
     school: { type: String },
     _isAdmin: { type: Boolean, default: false },
     _isSuper: { type: Boolean, default: false },
@@ -16,9 +16,11 @@ const userschema = new mongoose.Schema(
     _isVerify: { type: Boolean, default: false },
     _isActive: { type: Boolean, default: false },
     changePasswordAt: { type: Date },
-    img: {Object},
-    _isPresence:{ type: Boolean, default:false},
-    
+    img: {
+      src: { type: String },
+      id: { type: String }
+    },
+    _isPresence: { type: Boolean, default: false }
   },
   { timestamps: true }
 );
