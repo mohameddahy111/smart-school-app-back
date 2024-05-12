@@ -13,6 +13,7 @@ export const addUser = errorHandler(async (req, res, next) => {
   if (findUser) return next(new AppError("this user already exists", 401));
   req.body.slug = slugify(req.body.userName);
   if (req.file) {
+    console.log(req.file)
     const { public_id, secure_url } = await cloudinary.uploader.upload(
       req.file.path,
       { folder: `student/${req.body.school}/${req.body.slug}` }
